@@ -1,6 +1,6 @@
 <template>
   <div class="goodsitem" @click="goodsclick">
-    <img :src="goodsItem.show.img" @load="imageLoad" />
+    <img :src="showImage" @load="imageLoad" />
     <div class="content">
       <p>{{ goodsItem.title }}</p>
     </div>
@@ -25,14 +25,19 @@ export default {
       },
     },
   },
+  computed: {
+    showImage() {
+      return this.goodsItem.image || this.goodsItem.show.img;
+    },
+  },
   methods: {
     imageLoad() {
       //每有一张图片加载完成便向事件总线bus中发送自定义事件'itemimageload'事件
       this.$bus.$emit("itemimageload");
     },
-    goodsclick(){
-      this.$router.push('/detail')
-    }
+    goodsclick() {
+      this.$router.push("/detail/" + this.goodsItem.iid);
+    },
   },
 };
 </script>

@@ -44,11 +44,11 @@ export default {
   font-size: 12px;
   text-align: center;
   height: 49px;
+  background-color: #fff;
 }
 .tab-bar-item img {
   width: 24px;
   height: 24px;
-  vertical-align: middle;
   margin-top: 5px;
 }
 </style>

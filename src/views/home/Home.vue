@@ -76,12 +76,17 @@ export default {
       active: false,
       tabOffsetTop: 0,
       isTabFixed: false,
+      itemImgListener: null,
     };
   },
   computed: {
     showgoods() {
       return this.goods[this.type].list;
     },
+  },
+  deactivated() {
+    //取消全局事件的监听
+    this.$bus.$off("itemimageload",this.itemImgListener);
   },
   created() {
     //请求多个数据
@@ -95,9 +100,10 @@ export default {
     //添加防抖动
     const refresh = debounce(this.$refs.scroll.refresh, 500);
     //监听item图片加载完成，通过调用scroll组件里面的refresh方法在每张图片加载后都滚动区域进行刷新，解决商品内容无法拖拽的问题
-    this.$bus.$on("itemimageload", () => {
+    this.itemImgListener = () => {
       refresh();
-    });
+    };
+    this.$bus.$on("itemimageload",this.itemImgListener);
   },
   methods: {
     getHomeMultidata() {
@@ -158,7 +164,7 @@ export default {
 #home {
   position: relative;
   height: 100vh;
-  background-color: #e7eaed;
+  background-color: #f5f5f5;
 }
 .home-nav {
   background-color: #f16924;

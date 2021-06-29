@@ -19,5 +19,6 @@ export default {
   background: url("~assets/img/tabbar/backtop.svg") no-repeat center #fff;
   background-size: 25px, 25px;
   box-shadow: 8px 8px 8px -4px rgb(0, 0, 0, 0.3);
+  /* box-shadow: 0px 4px 14px 0px rgb(0, 0, 0, 0.3); */
 }
 </style>
