@@ -7,15 +7,15 @@
       </div>
       <div>
         <img src="~assets/img/tabbar/service.svg" alt="" />
-        <span>店铺</span>
+        <span>客服</span>
       </div>
-      <div @click="favclick">
+      <div>
         <img src="~assets/img/tabbar/favorite.svg" alt="" />
         <span>收藏</span>
       </div>
     </div>
     <div class="bottombar-right">
-      <button class="button-right">加入购物车</button>
+      <button class="button-right" @click="addToCart">加入购物车</button>
       <button class="button-left">立即购买</button>
     </div>
   </div>
@@ -25,8 +25,8 @@
 export default {
   name: "DetailBottomBar",
   methods: {
-    favclick() {
-      console.log('111');
+    addToCart() {
+      this.$emit("addcart")
     },
   },
 };

@@ -29,7 +29,7 @@
       <goods-list ref="goodslist" :goods="recommends"></goods-list>
     </scroll>
     <back-top v-show="active" @click.native="btnclick"></back-top>
-    <detail-bottom-bar></detail-bottom-bar>
+    <detail-bottom-bar @addcart="addtocart"></detail-bottom-bar>
   </div>
 </template>
 
@@ -163,6 +163,18 @@ export default {
     },
     btnclick() {
       this.$refs.scroll.scrollTo(0, 0, 0);
+    },
+    addtocart() {
+      //获取购物车需要展示的信息
+      const cartgoods = {};
+      cartgoods.image = this.topImages[0];
+      cartgoods.title = this.goods.title;
+      cartgoods.desc = this.goods.desc;
+      cartgoods.price = this.goods.realPrice;
+      cartgoods.iid = this.iid;
+      cartgoods.shopname = this.shop.name;
+      //将商品添加到购物车中
+      this.$store.dispatch("addCart", cartgoods);
     },
   },
 };

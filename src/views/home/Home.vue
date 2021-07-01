@@ -84,9 +84,12 @@ export default {
       return this.goods[this.type].list;
     },
   },
+  activated() {
+    this.$refs.scroll.refresh();
+  },
   deactivated() {
     //取消全局事件的监听
-    this.$bus.$off("itemimageload",this.itemImgListener);
+    this.$bus.$off("itemimageload", this.itemImgListener);
   },
   created() {
     //请求多个数据
@@ -103,7 +106,7 @@ export default {
     this.itemImgListener = () => {
       refresh();
     };
-    this.$bus.$on("itemimageload",this.itemImgListener);
+    this.$bus.$on("itemimageload", this.itemImgListener);
   },
   methods: {
     getHomeMultidata() {
