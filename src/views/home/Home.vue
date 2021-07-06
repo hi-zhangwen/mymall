@@ -77,6 +77,7 @@ export default {
       tabOffsetTop: 0,
       isTabFixed: false,
       itemImgListener: null,
+      saveY: 0,
     };
   },
   computed: {
@@ -86,10 +87,10 @@ export default {
   },
   activated() {
     this.$refs.scroll.refresh();
+    this.$refs.scroll.scrollTo(0, this.saveY, 0);
   },
   deactivated() {
-    //取消全局事件的监听
-    this.$bus.$off("itemimageload", this.itemImgListener);
+    this.saveY = this.$refs.scroll.bs.y;
   },
   created() {
     //请求多个数据
@@ -102,7 +103,7 @@ export default {
   mounted() {
     //添加防抖动
     const refresh = debounce(this.$refs.scroll.refresh, 500);
-    //监听item图片加载完成，通过调用scroll组件里面的refresh方法在每张图片加载后都滚动区域进行刷新，解决商品内容无法拖拽的问题
+    //监听item图片加载完成，通过调用scroll组件里面的refresh方法在每张图片加载后都对滚动区域进行刷新，解决商品内容无法拖拽的问题
     this.itemImgListener = () => {
       refresh();
     };

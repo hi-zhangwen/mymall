@@ -32,7 +32,7 @@ export default {
   },
   methods: {
     itemClick() {
-      this.$router.replace(this.path);
+      if (this.path != this.$route.path) this.$router.replace(this.path);
     },
   },
 };

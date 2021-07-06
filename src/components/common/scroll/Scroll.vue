@@ -24,6 +24,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    bounce: {
+      type: Boolean,
+      default: true,
+    },
   },
   data() {
     return {
@@ -37,8 +41,15 @@ export default {
       probeType: this.probeType,
       pullUpLoad: this.pullUpLoad,
       //使用插件observeDOM解决商品内容无法拖拽的问题
-      // observeDOM: true,
+      observeDOM: true,
       click: true,
+      bounce: {
+        top: this.bounce,
+        bottom: this.bounce,
+        left: this.bounce,
+        tighr: this.bounce,
+      },
+      bounceTime: 500,
     });
     //监听滚动的位置
     this.bs.on("scroll", (position) => {

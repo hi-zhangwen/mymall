@@ -86,6 +86,8 @@ export default {
       contentTopYs: [],
       getThemeTopY: null,
       active: false,
+      mes: "添加到购物车成功",
+      show: false,
     };
   },
   created() {
@@ -127,7 +129,7 @@ export default {
       this.contentTopYs.push(this.$refs.shopimages.$el.offsetTop);
       this.contentTopYs.push(this.$refs.commentinfo.$el.offsetTop);
       this.contentTopYs.push(this.$refs.goodslist.$el.offsetTop);
-    }, 500);
+    }, 300);
   },
   mounted() {
     //添加防抖动
@@ -174,7 +176,14 @@ export default {
       cartgoods.iid = this.iid;
       cartgoods.shopname = this.shop.name;
       //将商品添加到购物车中
-      this.$store.dispatch("addCart", cartgoods);
+      this.$store.dispatch("addCart", cartgoods).then((res) => {
+        /*   this.show = true;
+        this.mes = res;
+        setTimeout(() => {
+          this.show = false;
+        }, 1500); */
+        this.$toast.show(res,2000);
+      });
     },
   },
 };

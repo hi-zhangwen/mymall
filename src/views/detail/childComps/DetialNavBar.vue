@@ -34,12 +34,12 @@ export default {
   methods: {
     titleclick(index) {
       this.currentindex = index;
-      this.$emit('titleclick',index)
+      this.$emit("titleclick", index);
     },
-    backclick(){
+    backclick() {
       //返回上一页面
-      this.$router.back()
-    }
+      this.$router.back();
+    },
   },
 };
 </script>
